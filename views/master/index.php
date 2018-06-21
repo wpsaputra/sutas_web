@@ -86,7 +86,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     return print_r($posisi_name, true);
             }],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn'],
+
+            [  
+                'class' => 'yii\grid\ActionColumn',
+                // 'contentOptions' => ['style' => 'width:260px;'],
+                'header'=>'Actions',
+                // 'template' => '{view} {delete}',
+                'template' => '{view}',
+                // 'buttons' => [
+        
+                //     'view' => function ($url, $model) {
+                //         return Html::a('<span class="fa fa-search"></span>View', $url, [
+                //                     'title' => Yii::t('app', 'View'),
+                //                     'class'=>'btn btn-primary btn-xs',                                  
+                //         ]);
+                //     },
+                // ],
+        
+                // 'urlCreator' => function ($action, $model, $key, $index) {
+                //     if ($action === 'view') {
+                //         $url ='/jobs/view?id='.$model->jobid;
+                //         return $url;
+                //     }
+                // }
+        
+            ],
+
+
+
         ],
     ]); ?>
 </div>
