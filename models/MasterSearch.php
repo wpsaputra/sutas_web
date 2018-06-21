@@ -15,11 +15,16 @@ class MasterSearch extends Master
     /**
      * {@inheritdoc}
      */
+
+    public $last_position;
+     
     public function rules()
     {
         return [
             [['kode_qr_code', 'nbs', 'namaprop', 'namakab', 'namakec', 'namadesa', 'ket_strata', 'kd_mtd', 'metode'], 'safe'],
             [['prop', 'kab', 'kec', 'desa', 'klas', 'nks_sutas', 'j_rutatani', 'strata', 'j_ruta'], 'integer'],
+            // custom
+            [['last_position'], 'safe'],
         ];
     }
 
@@ -50,6 +55,12 @@ class MasterSearch extends Master
             'query' => $query,
         ]);
 
+        // custom
+        $dataProvider->sort->attributes['last_position'] = [
+            'asc' => ['id_posisi' => SORT_ASC, 'date_terima' => SORT_DESC],
+            'desc' => ['id_posisi' => SORT_DESC, 'date_terima' => SORT_DESC],
+        ];
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -69,6 +80,7 @@ class MasterSearch extends Master
             'j_rutatani' => $this->j_rutatani,
             'strata' => $this->strata,
             'j_ruta' => $this->j_ruta,
+            'batch.id_posisi' => $this->last_position,
         ]);
 
         $query->andFilterWhere(['like', 'kode_qr_code', $this->kode_qr_code])

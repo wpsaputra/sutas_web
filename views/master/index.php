@@ -67,42 +67,23 @@ $this->params['breadcrumbs'][] = $this->title;
             //     'format' => 'raw'
             // ],
 
-            ['attribute' => 'Posisi Terakhir',
-            'value' => function($model){
-                $item = ArrayHelper::toArray($model->batches);
-                // $item = ArrayHelper::multisort($item, ['date_terima'], ['SORT_DESC']);
-                // $item = ArrayHelper::multisort($item, ['date_terima'], [SORT_DESC]);;
-                ArrayHelper::multisort($item, ['date_terima'], [SORT_DESC]);
-                // return $item[0][id_posisi];
-                // return json_encode($item);
-                // return implode("|", $item);
-                
-                // return print_r($item[0]['id_posisi'], true);
-                // return print_r($item, true);
+            [
+                'attribute' => 'last_position',
+                'label' => 'Posisi Terakhir',
+                'value' => function($model){
+                    $item = ArrayHelper::toArray($model->batches);
+                    ArrayHelper::multisort($item, ['date_terima'], [SORT_DESC]);
 
-                $posisi =  ArrayHelper::map(Posisi::find()->all(),'id','posisi');
-                $id_posisi = print_r(reset($item)['id_posisi'], true);
-                
-                if(!$id_posisi){
-                    $posisi_name = 'Belum diterima';
-                }else{
-                    $posisi_name = $posisi[$id_posisi];
-                }
+                    $posisi =  ArrayHelper::map(Posisi::find()->all(),'id','posisi');
+                    $id_posisi = print_r(reset($item)['id_posisi'], true);
+                    
+                    if(!$id_posisi){
+                        $posisi_name = 'Belum diterima';
+                    }else{
+                        $posisi_name = $posisi[$id_posisi].' ['.$id_posisi.']';
+                    }
 
-                
-                // return print_r(reset($item)['id_posisi'], true);
-                // return print_r($posisi[1], true);
-                return print_r($posisi_name, true);
-                // return print_r($posisi[$id_posisi], true);
-                // return print_r($posisi_name);
-
-
-
-                // $items = [];
-                // foreach($model->batches as $batch){
-                //     $items[] = $batch->id_posisi;
-                // }
-                // return implode(', ', $items);
+                    return print_r($posisi_name, true);
             }],
 
             ['class' => 'yii\grid\ActionColumn'],
