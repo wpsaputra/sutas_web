@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
+use app\models\Posisi;
+use PHPUnit\Framework\Constraint\Exception;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\MasterSearch */
@@ -75,10 +77,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 // return json_encode($item);
                 // return implode("|", $item);
                 
-                // return print_r($item[0]['id_posisi'], true);;
-                // return print_r($item, true);;
+                // return print_r($item[0]['id_posisi'], true);
+                // return print_r($item, true);
+
+                $posisi =  ArrayHelper::map(Posisi::find()->all(),'id','posisi');
+                $id_posisi = print_r(reset($item)['id_posisi'], true);
                 
-                return print_r(reset($item)['id_posisi'], true);;
+                if(!$id_posisi){
+                    $posisi_name = 'Belum diterima';
+                }else{
+                    $posisi_name = $posisi[$id_posisi];
+                }
+
+                
+                // return print_r(reset($item)['id_posisi'], true);
+                // return print_r($posisi[1], true);
+                return print_r($posisi_name, true);
+                // return print_r($posisi[$id_posisi], true);
+                // return print_r($posisi_name);
+
 
 
                 // $items = [];
