@@ -102,15 +102,15 @@ $this->title = 'Status Dokumen Sutas';
                     'header'=>'Actions',
                     // 'template' => '{view} {delete}',
                     'template' => '{view}',
-                    // 'buttons' => [
+                    'buttons' => [
             
-                    //     'view' => function ($url, $model) {
-                    //         return Html::a('<span class="fa fa-search"></span>View', $url, [
-                    //                     'title' => Yii::t('app', 'View'),
-                    //                     'class'=>'btn btn-primary btn-xs',                                  
-                    //         ]);
-                    //     },
-                    // ],
+                        'view' => function ($url, $model) {
+                            return Html::a('<span class="fa fa-search"></span> View', $url, [
+                                        'title' => Yii::t('app', 'View'),
+                                        'class'=>'btn btn-primary btn-xs',                                  
+                            ]);
+                        },
+                    ],
             
                     // 'urlCreator' => function ($action, $model, $key, $index) {
                     //     if ($action === 'view') {
