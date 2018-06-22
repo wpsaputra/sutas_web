@@ -8,7 +8,6 @@ use app\models\MasterSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Batch;
 
 /**
  * MasterController implements the CRUD actions for Master model.
@@ -53,11 +52,8 @@ class MasterController extends Controller
      */
     public function actionView($id)
     {
-
-        $model_batch = Batch::find()->where(['id_barcode'=>$id])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'model_batch' => $model_batch,
         ]);
     }
 

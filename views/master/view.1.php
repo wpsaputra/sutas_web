@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Master */
@@ -10,8 +9,6 @@ use yii\helpers\ArrayHelper;
 $this->title = $model->kode_qr_code;
 $this->params['breadcrumbs'][] = ['label' => 'Masters', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-
-print_r(ArrayHelper::toArray($model_batch));
 ?>
 <div class="master-view">
 
@@ -51,6 +48,5 @@ print_r(ArrayHelper::toArray($model_batch));
             'metode',
         ],
     ]) ?>
-    
 
 </div>
