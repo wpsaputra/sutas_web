@@ -54,7 +54,7 @@ class MasterController extends Controller
     public function actionView($id)
     {
 
-        $model_batch = Batch::find()->where(['id_barcode'=>$id])->all();
+        $model_batch = Batch::find()->where(['id_barcode'=>$id])->orderBy(['date_terima'=>SORT_DESC])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
             'model_batch' => $model_batch,

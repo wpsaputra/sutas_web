@@ -25,170 +25,33 @@ $js = "$('#myTimeline').verticalTimeline({
 
 $this->registerJS($js);
 
+$array_posisi = array(1=>'Penerimaan TU', 2=>'Penerimaan IPDS', 3=>'Entri Dokumen', 4=>'Validasi Dokumen', 5=>'-');
+$array_quote = array(1=>'Tahapan penerimaan dokumen SUTAS dari kabupaten oleh TU Provinsi', 2=>'Tahapan penerimaan dokumen SUTAS dari TU Provinsi ke IPDS Provinsi', 
+3=>'Tahapan pengentrian dokumen SUTAS', 4=>'Tahapan validasi dokumen SUTAS', 5=>'-');
+
+$timeline_template = '<div>
+<div class="date pull-right">?date?</div>
+    <h2 style="padding:10px 20px;">?posisi?</h2>
+    <blockquote>?quote?</blockquote>
+</div>';
+
 
 // print_r(ArrayHelper::toArray($model_batch));
 ?>
 <div class="master-view">
-    <!-- <div id="myTimeline">
-        <div data-vtdate="February 2018" class='timeline-content'>
-            <i class="fa fa-music"></i>
-            Validasi Dokumen
-        </div>
-        <div data-vtdate="March 2018">
-            Entri Dokumen
-        </div>
-        <div data-vtdate="April 2018">
-            Penerimaan IPDS
-        </div>
-        <div data-vtdate="Januari 2018">
-            Penerimaan TU
-        </div>
-    </div> -->
 
     <div id="myTimeline">
-        <div>
-            <div class="date pull-right">8 AUG 2016</div>
-                <h2 style="padding:10px 20px;">Validasi Dokumen</h2>
-                <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta explicabo debitis omnis dolor iste fugit totam quasi inventore!</blockquote>
-        </div>
+        <?php
+            $arr_model_batch = ArrayHelper::toArray($model_batch);
+            foreach ($arr_model_batch as $key => $value) {
+                $temp = $timeline_template;
+                $temp = str_replace("?date?", DateTime::createFromFormat('Y-m-d H:i:s', $value['date_terima'])->format('d M Y (H:i:s)'), $temp);
+                $temp = str_replace("?posisi?", $array_posisi[$value['id_posisi']], $temp);
+                $temp = str_replace("?quote?", $array_quote[$value['id_posisi']], $temp);
+                echo $temp;
+            }
 
-        <div>
-            <div class="date pull-right">7 AUG 2016</div>
-                <h2 style="padding:10px 20px;">Entri Dokumen</h2>
-                <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta explicabo debitis omnis dolor iste fugit totam quasi inventore!</blockquote>
-        </div>
+        ?>
 
-        <div>
-            <div class="date pull-right">6 AUG 2016</div>
-                <h2 style="padding:10px 20px;">Penerimaan IPDS</h2>
-                <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta explicabo debitis omnis dolor iste fugit totam quasi inventore!</blockquote>
-        </div>
-
-        <div>
-            <div class="date pull-right">5 AUG 2016</div>
-                <h2 style="padding:10px 20px;">Penerimaan TU</h2>
-                <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta explicabo debitis omnis dolor iste fugit totam quasi inventore!</blockquote>
-        </div>
-        
     </div>
-
-    <!-- <section class="timeline">
-        <div class="container">
-            <div class="timeline-item">
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content js--fadeInLeft">
-                <h2>Title</h2>
-                <div class="date">1 MAY 2016</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-                <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-            </div> 
-
-            <div class="timeline-item">
-
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content timeline-card js--fadeInRight">
-                <div class="timeline-img-header">
-                <h2>Card Title</h2>
-                </div>
-                <div class="date">25 MAY 2016</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-                <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-
-            </div>   
-
-            <div class="timeline-item">
-
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content js--fadeInLeft">
-                <div class="date">3 JUN 2016</div>
-                <h2>Quote</h2>
-                <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta explicabo debitis omnis dolor iste fugit totam quasi inventore!</blockquote>
-            </div>
-            </div>   
-
-            <div class="timeline-item">
-
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content js--fadeInRight">
-                <h2>Title</h2>
-                <div class="date">22 JUN 2016</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-                <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-            </div>   
-
-            <div class="timeline-item">
-
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content timeline-card js--fadeInLeft">
-                <div class="timeline-img-header">
-                <h2>Card Title</h2>
-                </div>
-                <div class="date">10 JULY 2016</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-                <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-            </div>   
-
-            <div class="timeline-item">
-
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content timeline-card js--fadeInRight">
-                <div class="timeline-img-header">
-                <h2>Card Title</h2>
-                </div>
-                <div class="date">30 JULY 2016</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-                <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-            </div>  
-
-            <div class="timeline-item">
-
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content js--fadeInLeft">
-                <div class="date">5 AUG 2016</div>
-                <h2>Quote</h2>
-                <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta explicabo debitis omnis dolor iste fugit totam quasi inventore!</blockquote>
-            </div>
-            </div>   
-
-            <div class="timeline-item">
-
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content timeline-card js--fadeInRight">
-                <div class="timeline-img-header">
-                <h2>Card Title</h2>
-                </div>
-                <div class="date">19 AUG 2016</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-                <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-            </div>  
-
-            <div class="timeline-item">
-
-            <div class="timeline-img"></div>
-
-            <div class="timeline-content js--fadeInLeft">
-                <div class="date">1 SEP 2016</div>
-                <h2>Title</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor, nostrum excepturi amet in dolores. Alias, ullam.</p>
-                <a class="bnt-more" href="javascript:void(0)">More</a>
-            </div>
-            </div>   
-
-        </div>
-    </section> -->
-
 </div>
