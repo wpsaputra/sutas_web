@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'kec',
             'desa',
 
-            //'nbs',
+            'nbs',
             //'namaprop',
             //'namakab',
             //'namakec',
@@ -68,8 +68,27 @@ $this->params['breadcrumbs'][] = $this->title;
             // ],
 
             [
+                'attribute' => 'jumlah_l1',
+                'label' => 'Jumlah L1',
+                'value' => function($model){
+                    $item = ArrayHelper::toArray($model->batches);
+                    ArrayHelper::multisort($item, ['date_terima'], [SORT_DESC]);
+                    return print_r(reset($item)['jumlah_l1'], true);
+            }],
+
+            [
+                'attribute' => 'jumlah_l2',
+                'label' => 'Jumlah L2',
+                'value' => function($model){
+                    $item = ArrayHelper::toArray($model->batches);
+                    ArrayHelper::multisort($item, ['date_terima'], [SORT_DESC]);
+                    return print_r(reset($item)['jumlah_l2'], true);
+            }],
+            
+            [
                 'attribute' => 'last_position',
                 'label' => 'Posisi Terakhir',
+                'format' => 'raw',
                 'value' => function($model){
                     $item = ArrayHelper::toArray($model->batches);
                     ArrayHelper::multisort($item, ['date_terima'], [SORT_DESC]);
@@ -78,7 +97,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     $id_posisi = print_r(reset($item)['id_posisi'], true);
                     
                     if(!$id_posisi){
-                        $posisi_name = 'Belum diterima';
+                        // $posisi_name = 'Belum diterima';
+                        $posisi_name = '<p style="color: #d9534f;">Belum diterima</p>';
                     }else{
                         $posisi_name = $posisi[$id_posisi].' ['.$id_posisi.']';
                     }

@@ -17,6 +17,8 @@ class MasterSearch extends Master
      */
 
     public $last_position;
+    public $jumlah_l1;
+    public $jumlah_l2;
      
     public function rules()
     {
@@ -25,6 +27,8 @@ class MasterSearch extends Master
             [['prop', 'kab', 'kec', 'desa', 'klas', 'nks_sutas', 'j_rutatani', 'strata', 'j_ruta'], 'integer'],
             // custom
             [['last_position'], 'safe'],
+            [['jumlah_l1'], 'safe'],
+            [['jumlah_l2'], 'safe'],
         ];
     }
 
@@ -61,6 +65,16 @@ class MasterSearch extends Master
             'desc' => ['id_posisi' => SORT_DESC, 'date_terima' => SORT_DESC],
         ];
 
+        $dataProvider->sort->attributes['jumlah_l1'] = [
+            'asc' => ['jumlah_l1' => SORT_ASC, 'date_terima' => SORT_DESC],
+            'desc' => ['jumlah_l1' => SORT_DESC, 'date_terima' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['jumlah_l2'] = [
+            'asc' => ['jumlah_l2' => SORT_ASC, 'date_terima' => SORT_DESC],
+            'desc' => ['jumlah_l2' => SORT_DESC, 'date_terima' => SORT_DESC],
+        ];
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -81,6 +95,8 @@ class MasterSearch extends Master
             'strata' => $this->strata,
             'j_ruta' => $this->j_ruta,
             'batch.id_posisi' => $this->last_position,
+            'batch.jumlah_l1' => $this->jumlah_l1,
+            'batch.jumlah_l2' => $this->jumlah_l2,
         ]);
 
         $query->andFilterWhere(['like', 'kode_qr_code', $this->kode_qr_code])
