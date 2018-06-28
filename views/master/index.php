@@ -12,6 +12,12 @@ use PHPUnit\Framework\Constraint\Exception;
 
 $this->title = 'Status Dokumen Sutas';
 // $this->params['breadcrumbs'][] = $this->title;
+$js = '
+$("[name=\'MasterSearch[prop]\']").prop("disabled", true);
+';
+
+$this->registerJs($js);
+
 ?>
 <div class="master-index">
 
