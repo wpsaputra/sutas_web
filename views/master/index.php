@@ -40,12 +40,34 @@ $this->registerJs($js);
                 ['class' => 'yii\grid\SerialColumn'],
 
                 'kode_qr_code',
-                'prop',
-                'kab',
-                'kec',
-                'desa',
+                // 'prop',
+                // 'kab',
+                // 'kec',
+                // 'desa',
+                // 'nbs',
 
-                'nbs',
+                ['attribute' => 'prop',
+                    'contentOptions' => ['style' => 'min-width:80px;'],
+                ],
+
+                ['attribute' => 'kab',
+                    'contentOptions' => ['style' => 'min-width:80px;'],
+                ],
+
+                ['attribute' => 'kec',
+                    'contentOptions' => ['style' => 'min-width:80px;'],
+                ],
+
+                ['attribute' => 'desa',
+                    'contentOptions' => ['style' => 'min-width:80px;'],
+                ],
+
+                ['attribute' => 'nbs',
+                    'contentOptions' => ['style' => 'min-width:80px;'],
+                ],
+                
+
+                
                 //'namaprop',
                 //'namakab',
                 //'namakec',
