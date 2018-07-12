@@ -19,6 +19,7 @@ class MasterSearch extends Master
     public $last_position;
     public $jumlah_l1;
     public $jumlah_l2;
+    public $no_hp;
      
     public function rules()
     {
@@ -29,6 +30,7 @@ class MasterSearch extends Master
             [['last_position'], 'safe'],
             [['jumlah_l1'], 'safe'],
             [['jumlah_l2'], 'safe'],
+            [['no_hp'], 'safe'],
         ];
     }
 
@@ -75,6 +77,11 @@ class MasterSearch extends Master
             'desc' => ['jumlah_l2' => SORT_DESC, 'date_terima' => SORT_DESC],
         ];
 
+        $dataProvider->sort->attributes['no_hp'] = [
+            'asc' => ['no_hp' => SORT_ASC, 'date_terima' => SORT_DESC],
+            'desc' => ['no_hp' => SORT_DESC, 'date_terima' => SORT_DESC],
+        ];
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -97,6 +104,7 @@ class MasterSearch extends Master
             'batch.id_posisi' => $this->last_position,
             'batch.jumlah_l1' => $this->jumlah_l1,
             'batch.jumlah_l2' => $this->jumlah_l2,
+            'batch.no_hp' => $this->no_hp,
         ]);
 
         $query->andFilterWhere(['like', 'kode_qr_code', $this->kode_qr_code])

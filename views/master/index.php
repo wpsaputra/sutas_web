@@ -100,6 +100,15 @@ $this->registerJs($js);
                         ArrayHelper::multisort($item, ['date_terima'], [SORT_DESC]);
                         return print_r(reset($item)['jumlah_l2'], true);
                 }],
+
+                // [
+                //     'attribute' => 'no_hp',
+                //     'label' => 'Nomor Handphone',
+                //     'value' => function($model){
+                //         $item = ArrayHelper::toArray($model->batches);
+                //         ArrayHelper::multisort($item, ['date_terima'], [SORT_DESC]);
+                //         return print_r(reset($item)['no_hp'], true);
+                // }],
                 
                 [
                     'attribute' => 'last_position',
